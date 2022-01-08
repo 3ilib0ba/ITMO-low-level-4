@@ -49,7 +49,7 @@ static struct region alloc_region  ( void const * addr, size_t query ) {
         }
     }
 
-    struct region new_block = (struct region) { .addr = address_for_new_block, .size = size, .extends = true };
+    struct region new_block = (struct region) { .addr = new_block_address, .size = size, .extends = true };
     block_init(address_for_new_block, (block_size) { .bytes = region_actual_size(query) }, NULL);
 
     return new_block;
@@ -81,7 +81,7 @@ static bool split_if_too_big( struct block_header* block, size_t query ) {
     block_size size_second_block = (block_size) {.bytes = size_from_capacity(block->capacity).bytes - query};
     block->capacity.bytes = query;
     void *address_second_block = block_after(block);
-    block_init(address_for_second_block, size_second_block, block->next);
+    block_init(address_second_block, size_second_block, block->next);
     block->next = address_second_block;
     return true;
 }
@@ -178,7 +178,7 @@ static struct block_header* memalloc( size_t query, struct block_header* heap_st
     } else if (result.type == BSR_REACHED_END_NOT_FOUND) {
         new_header = grow_heap(result.block, query);
         split_if_too_big(new_header, query);
-        return new_block;
+        return new_header;
     }
     result.block->is_free=false;
     return result.block;
