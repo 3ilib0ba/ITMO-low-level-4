@@ -50,7 +50,7 @@ static struct region alloc_region  ( void const * addr, size_t query ) {
     }
 
     struct region new_block = (struct region) { .addr = new_block_address, .size = size, .extends = true };
-    block_init(address_for_new_block, (block_size) { .bytes = region_actual_size(query) }, NULL);
+    block_init(new_block_address, (block_size) { .bytes = region_actual_size(query) }, NULL);
 
     return new_block;
 
