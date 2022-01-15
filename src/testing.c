@@ -59,10 +59,10 @@ void test_3() {
 void test_4() {
     printf("test 4 start\n");
 
-    void *heap = heap_init(450);
-    _malloc(300);
+    void *heap = heap_init(12000);
+    _malloc(10000);
     debug_heap(stdout, heap);
-    _malloc(200);
+    _malloc(4000);
     debug_heap(stdout, heap);
 }
 
