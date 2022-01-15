@@ -6,6 +6,10 @@
 #include "mem.h"
 #include "mem_internals.h"
 
+#ifndef MAP_FIXED_NOREPLACE
+#define MAP_FIXED_NOREPLACE 0x10000
+#endif
+
 // test with malloc one block
 void test_1() {
     printf("test 1 start");
@@ -74,7 +78,7 @@ void test_5() {
     debug_heap(stdout, heap1);
 
     struct block_header* tmp = (struct block_header*) heap1 + 8000;
-    mmap((void*) tmp, 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED, 0, 0);
+    mmap((void*) tmp, 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED_NOREPLACE, 0, 0);
 
     printf("%s\n", "result: ");
     _malloc(9000);
