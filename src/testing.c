@@ -74,9 +74,9 @@ void test_4() {
 void test_5() {
     printf("test 5 start\n");
 
-    void *heap1 = heap_init(9000);
+    void *heap1 = heap_init(10000);
     debug_heap(stdout, heap1);
-    _malloc(9000);
+    _malloc(10000);
     debug_heap(stdout, heap1);
 
     struct block_header* tmp = heap1;
@@ -86,6 +86,6 @@ void test_5() {
     mmap((uint8_t*) tmp + size_from_capacity(tmp->capacity).bytes, 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED_NOREPLACE, 0, 0);
 
     printf("%s\n", "result: ");
-    _malloc(9500);
+    _malloc(3000);
     debug_heap(stdout, heap1);
 }
