@@ -78,11 +78,13 @@ static bool split_if_too_big( struct block_header* block, size_t query ) {
         return false;
     }
 
+    void *second_block = (void*)((uint8_t*) block + offsetof(struct block_header, contents) + query);
     block_size size_second_block = (block_size) {.bytes = size_from_capacity(block->capacity).bytes - query};
+    block_init(new_block_addr, size_second_block, NULL);
+
     block->capacity.bytes = query;
-    void *address_second_block = block_after(block);
-    block_init(address_second_block, size_second_block, block->next);
     block->next = address_second_block;
+    
     return true;
 }
 
