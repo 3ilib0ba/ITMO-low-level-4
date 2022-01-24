@@ -83,7 +83,7 @@ static bool split_if_too_big( struct block_header* block, size_t query ) {
     block_init(second_block, size_second_block, NULL);
 
     block->capacity.bytes = query;
-    block->next = address_second_block;
+    block->next = second_block;
     
     return true;
 }
