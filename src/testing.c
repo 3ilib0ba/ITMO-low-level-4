@@ -70,6 +70,11 @@ void test_4() {
     debug_heap(stdout, heap);
 }
 
+void do_nothing(void* tmp) {
+    printf("do nothing start");
+    return;
+}
+
 // test with new memory and moving
 void test_5() {
     printf("test 5 start\n");
@@ -84,6 +89,7 @@ void test_5() {
         tmp = tmp->next;
     }
     void* tmp_new_addr = mmap((void*) ((uint8_t*) tmp + size_from_capacity(tmp->capacity).bytes), 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED_NOREPLACE, 0, 0);
+    do_nothing(tmp_new_addr);
 
     printf("%s\n", "result: ");
     _malloc(3000);
