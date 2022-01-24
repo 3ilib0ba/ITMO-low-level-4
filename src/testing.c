@@ -71,8 +71,11 @@ void test_4() {
 }
 
 void do_nothing(void* tmp) {
+    uint8_t x = 10;
+    if ((uint8_t*) tmp ==  &x) {
+        printf("if statement is good");
+    }
     printf("do nothing start");
-    return;
 }
 
 // test with new memory and moving
