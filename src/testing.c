@@ -83,7 +83,7 @@ void test_5() {
     while (tmp->next != NULL) {
         tmp = tmp->next;
     }
-    mmap((uint8_t*) tmp + size_from_capacity(tmp->capacity).bytes, 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED_NOREPLACE, 0, 0);
+    mmap((void*) ((uint8_t*) tmp + size_from_capacity(tmp->capacity).bytes), 10000, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_FIXED_NOREPLACE, 0, 0);
 
     printf("%s\n", "result: ");
     _malloc(3000);
