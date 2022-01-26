@@ -40,7 +40,7 @@ static void* map_pages(void const* addr, size_t length, int additional_flags) {
 /*  аллоцировать регион памяти и инициализировать его блоком */
 static struct region alloc_region  ( void const * addr, size_t query ) {
     const size_t size = region_actual_size(query);
-    void *new_block_address = map_pages(addr, size, MAP_FIXED);
+    void *new_block_address = map_pages(addr, size, MAP_FIXED_NOREPLACE);
 
     if (new_block_address == MAP_FAILED) {
         new_block_address = map_pages(addr, size, 0);
