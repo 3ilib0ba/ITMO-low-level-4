@@ -79,7 +79,7 @@ static bool split_if_too_big( struct block_header* block, size_t query ) {
     }
 
     void *second_block = (void*)((uint8_t*) block + offsetof(struct block_header, contents) + query);
-    block_size size_second_block = (block_size) {.bytes = size_from_capacity(block->capacity).bytes - query};
+    block_size size_second_block = (block_size) {.bytes = block->capacity.bytes - query};
     block_init(second_block, size_second_block, NULL);
 
     block->capacity.bytes = query;
