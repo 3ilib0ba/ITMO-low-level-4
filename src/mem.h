@@ -1,10 +1,9 @@
 #ifndef _MEM_H_
 #define _MEM_H_
 
-
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <stdio.h>
 
 #include <sys/mman.h>

@@ -1,14 +1,15 @@
-#include <stdarg.h>
-#define _DEFAULT_SOURCE
-#include <unistd.h>
-#include <stdio.h>
-#include <stddef.h>
-#include <stdlib.h>
 #include <assert.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-#include "mem_internals.h"
 #include "mem.h"
+#include "mem_internals.h"
 #include "util.h"
+
+#define _DEFAULT_SOURCE
 
 void debug_block(struct block_header* b, const char* fmt, ... );
 void debug(const char* fmt, ... );
