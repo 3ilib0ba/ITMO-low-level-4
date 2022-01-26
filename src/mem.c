@@ -9,7 +9,7 @@
 #include "mem_internals.h"
 #include "util.h"
 
-#define _DEFAULT_SOURCE
+//#define _DEFAULT_SOURCE
 
 void debug_block(struct block_header* b, const char* fmt, ... );
 void debug(const char* fmt, ... );
