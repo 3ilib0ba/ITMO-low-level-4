@@ -1,3 +1,4 @@
+#define _DEFAULT_SOURCE
 #include <assert.h>
 #include <stdarg.h>
 #include <stddef.h>
@@ -9,7 +10,6 @@
 #include "mem_internals.h"
 #include "util.h"
 
-//#define _DEFAULT_SOURCE
 
 void debug_block(struct block_header* b, const char* fmt, ... );
 void debug(const char* fmt, ... );
@@ -46,7 +46,7 @@ static struct region alloc_region  ( void const * addr, size_t query ) {
     if (new_block_address == MAP_FAILED) {
         new_block_address = map_pages(addr, size, 0);
         if (new_block_address == MAP_FAILED) {
-            new_block_address = NULL;
+            return REGION_INVALID;
         }
     }
 
